@@ -2,16 +2,14 @@
 
 /** @var yii\web\View $this */
 
+use yii\helpers\Url;
+
 $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
 
     <div class="jumbotron text-center bg-transparent">
-        <h1 class="display-4">Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <p id="counter">Счетчик обновится через 5 секунд</p>
     </div>
 
     <div class="body-content">
@@ -38,6 +36,8 @@ $this->title = 'My Yii Application';
 </div>
 
 <script>
+    let count = 0;
+
     function hover(el) {
         el.src = el.dataset.before;
     }
@@ -45,4 +45,20 @@ $this->title = 'My Yii Application';
     function back(el) {
         el.src = el.dataset.after;
     }
+
+    function updateCounter() {
+        $.ajax({
+            type: 'GET',
+            url: <?= Url::toRoute('/site/counter')?>,
+            datatype: 'text',
+            success: function (response) {
+                $('#counter').html('Количество решенных заявок: ' + response);
+            }
+        });
+    }
+
+    setInterval(() => {
+        updateCounter();
+    }, 5000);
+
 </script>

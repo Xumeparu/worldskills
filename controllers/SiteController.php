@@ -132,4 +132,8 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionCounter() {
+        return Application::find()->andWhere(['status' => 'Выполнено'])->count();
+    }
 }
