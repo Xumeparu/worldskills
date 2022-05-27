@@ -3,7 +3,10 @@
 namespace app\controllers;
 
 use app\models\Order;
+use app\models\OrderCancelForm;
+use app\models\OrderConfirmForm;
 use app\models\OrderSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -98,6 +101,36 @@ class OrderController extends Controller
         }
 
         return $this->render('update', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionCancel($id)
+    {
+        $model = OrderCancelForm::findOne($id);
+
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $model->status = "Отмененный";
+            $model->save();
+            return $this->redirect(['index']);
+        }
+
+        return $this->render('cancel', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionConfirm($id)
+    {
+        $model = OrderConfirmForm::findOne($id);
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->status = "Подтвержденный";
+            $model->save();
+            return $this->redirect(['/order']);
+        }
+
+        return $this->render('confirm', [
             'model' => $model,
         ]);
     }

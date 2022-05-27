@@ -45,6 +45,7 @@ CREATE TABLE `order` (
     `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `status` SET('Новый','Подтвержденный','Отмененный') NOT NULL DEFAULT 'Новый',
     `amount` FLOAT NOT NULL,
+    `reason` TEXT,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
 

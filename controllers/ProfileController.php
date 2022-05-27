@@ -88,7 +88,13 @@ class ProfileController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if ($this->findModel($id)->status === 'Новый') {
+            $this->findModel($id)->delete();
+            Yii::$app->session->setFlash('success', 'Заказ успешно удален');
+        } else {
+            Yii::$app->session->setFlash('danger', 'Заказ не может быть удалена, так как 
+            ее статус был изменен администратором');
+        }
 
         return $this->redirect(['index']);
     }

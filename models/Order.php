@@ -48,7 +48,7 @@ class Order extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'userId' => 'ID пользователя',
+            'userId' => 'Пользователь',
             'timestamp' => 'Время создания',
             'status' => 'Статус',
             'amount' => 'Сумма',

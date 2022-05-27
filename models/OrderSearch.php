@@ -65,6 +65,8 @@ class OrderSearch extends Order
             'amount' => $this->amount,
         ]);
 
+        $query->orderBy(['timestamp' => SORT_DESC]);
+
         $query->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;

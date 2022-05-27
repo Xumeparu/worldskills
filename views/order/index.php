@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'userId',
+            ['attribute' => "userId", 'value' => 'user.login'],
             'timestamp',
             'status',
             'amount',
@@ -38,7 +38,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Order $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                 },
+                'template' => '{confirm} {cancel}',
+                'buttons' => [
+                    'confirm' => function($url, $model) {
+                        if ($model->status === 'Новый') {
+                            return Html::a('Подтвердить', ['/order/confirm', 'id' => $model->id]);
+                        }
+                    },
+                    'cancel' => function($url, $model) {
+                        if ($model->status === 'Новый') {
+                            return Html::a('Отменить', ['/order/cancel', 'id' => $model->id]);
+                        }
+                    },
+                ]
             ],
         ],
     ]); ?>
