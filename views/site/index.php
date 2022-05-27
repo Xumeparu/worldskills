@@ -4,32 +4,32 @@
 
 use yii\helpers\Url;
 
-$this->title = 'My Yii Application';
+$this->title = 'Funny Comics Land';
 ?>
 <div class="site-index">
 
     <div class="jumbotron text-center bg-transparent"></div>
 
     <div class="body-content">
-<!---->
-<!--        <div class="row">-->
-<!--            --><?php
-//                foreach ($applications as $application) {
-//                    echo '
-//                        <div class="col-lg-3">
-//                        <h2>'.$application->title.'</h2>
-//                        <p>'.$application->description.'</p>
-//                        <p>'.$application->timestamp.'</p>
-//                        <img class="img-fluid" src="uploads/'.$application->pictureApplication.'" alt=""
-//                        data-before="uploads/'.$application->pictureApplication.'"
-//                        data-after="uploads/'.$application->pictureDesign.'"
-//                        onmouseover="hover(this)" onmouseout="back(this)">
-//                        </div>
-//                    ';
-//                }
-//            ?>
-<!--        </div>-->
-
+        <div id="carouselExampleControls" class="carousel slide w-25" data-ride="carousel">
+            <div class="carousel-inner">
+                <?php $i=0; foreach ($products as $product): ?>
+                    <?php if ($i==0) {$set_ = 'active'; } else {$set_ = ''; } ?>
+                    <div class='carousel-item <?php echo $set_; ?>'>
+                        <img src='uploads/<?php echo $product->picture; ?>' class='d-block w-100 image' alt="">
+                        <h1><?php echo $product->title; ?></h1>
+                    </div>
+                <?php $i++; endforeach ?>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
     </div>
 </div>
 
@@ -45,3 +45,4 @@ $this->title = 'My Yii Application';
     }
 
 </script>
+

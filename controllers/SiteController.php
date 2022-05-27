@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Product;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -62,14 +63,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-//        $applications = Application::find()
-//            ->where(['status' => 'Выполнено'])
-//            ->orderBy(['timestamp' => SORT_DESC])
-//            ->limit(4)
-//            ->all();
-//
-//        return $this->render('index', ['applications' => $applications]);
-        return $this->render('index');
+        $products = Product::find()
+            ->orderBy(['timestamp' => SORT_DESC])
+            ->limit(5)
+            ->all();
+
+        return $this->render('index', ['products' => $products]);
     }
 
     /**
@@ -134,7 +133,13 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-    public function actionCounter() {
-        return Application::find()->andWhere(['status' => 'Выполнено'])->count();
+    /**
+     * Displays catalog page.
+     *
+     * @return string
+     */
+    public function actionCatalog()
+    {
+        return $this->render('catalog');
     }
 }
