@@ -12,7 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'fullName')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'surname')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'patronymic')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'login')->textInput(['maxlength' => true]) ?>
 
@@ -20,9 +24,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'passwordConfirm')->passwordInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'password_repeat')->passwordInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'consent')->checkbox() ?>
+    <?= $form->field($model, 'rules')->checkbox() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-success']) ?>

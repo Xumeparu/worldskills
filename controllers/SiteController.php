@@ -62,13 +62,14 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $applications = Application::find()
-            ->where(['status' => 'Выполнено'])
-            ->orderBy(['timestamp' => SORT_DESC])
-            ->limit(4)
-            ->all();
-
-        return $this->render('index', ['applications' => $applications]);
+//        $applications = Application::find()
+//            ->where(['status' => 'Выполнено'])
+//            ->orderBy(['timestamp' => SORT_DESC])
+//            ->limit(4)
+//            ->all();
+//
+//        return $this->render('index', ['applications' => $applications]);
+        return $this->render('index');
     }
 
     /**

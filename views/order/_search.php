@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\CategorySearch */
+/* @var $model app\models\OrderSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="category-search">
+<div class="order-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -17,7 +17,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'title') ?>
+    <?= $form->field($model, 'userId') ?>
+
+    <?= $form->field($model, 'timestamp') ?>
+
+    <?= $form->field($model, 'status') ?>
+
+    <?= $form->field($model, 'amount') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Найти', ['class' => 'btn btn-primary']) ?>

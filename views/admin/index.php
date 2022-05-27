@@ -16,8 +16,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Управление категориями',['/category']) ?>
-    </p>
+    <p><?= Html::a('Управление заказами',['/order']) ?></p>
+
+    <p><?= Html::a('Управление товарами',['/product']) ?></p>
+
+    <p><?= Html::a('Управление категориями',['/category']) ?></p>
 
 </div>

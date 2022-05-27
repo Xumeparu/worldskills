@@ -36,6 +36,9 @@ AppAsset::register($this);
     ]);
 
     $items = [];
+    $items[] = ['label' => 'О нас', 'url' => ['/site/about']];
+    $items[] = ['label' => 'Каталог', 'url' => ['/site/catalog']];
+    $items[] = ['label' => 'Где нас найти?', 'url' => ['/site/info']];
 
     if (Yii::$app->user->isGuest) {
         $items[] = ['label' => 'Регистрация', 'url' => ['/user/create']];
@@ -49,7 +52,7 @@ AppAsset::register($this);
         $items[] = '<li>'
                 . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
                 . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->login . ')',
+                    'Выход (' . Yii::$app->user->identity->login . ')',
                     ['class' => 'btn btn-link logout']
                 )
                 . Html::endForm()
@@ -59,23 +62,6 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => $items,
-//        'items' => [
-//            ['label' => 'Home', 'url' => ['/site/index']],
-//            ['label' => 'About', 'url' => ['/site/about']],
-//            ['label' => 'Регистрация', 'url' => ['/user/create']],
-//            Yii::$app->user->isGuest ? (
-//                ['label' => 'Login', 'url' => ['/site/login']]
-//            ) : (
-//                '<li>'
-//                . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
-//                . Html::submitButton(
-//                    'Logout (' . Yii::$app->user->identity->login . ')',
-//                    ['class' => 'btn btn-link logout']
-//                )
-//                . Html::endForm()
-//                . '</li>'
-//            )
-//        ],
     ]);
     NavBar::end();
     ?>

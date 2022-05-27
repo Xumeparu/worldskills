@@ -8,13 +8,15 @@ use Yii;
  * This is the model class for table "user".
  *
  * @property int $id
- * @property string $fullName
+ * @property string $surname
+ * @property string $name
+ * @property string|null $patronymic
  * @property string $login
  * @property string $email
  * @property string $password
  * @property int $adminRights
  *
- * @property Application[] $applications
+ * @property Order[] $orders
  */
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
@@ -32,9 +34,9 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['fullName', 'login', 'email', 'password'], 'required'],
+            [['surname', 'name', 'login', 'email', 'password'], 'required'],
             [['adminRights'], 'integer'],
-            [['fullName', 'login', 'email', 'password'], 'string', 'max' => 255],
+            [['surname', 'name', 'patronymic', 'login', 'email', 'password'], 'string', 'max' => 255],
             [['login'], 'unique'],
             [['email'], 'unique'],
         ];
@@ -47,9 +49,11 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return [
             'id' => 'ID',
-            'fullName' => 'ФИО',
+            'surname' => 'Фамилия',
+            'name' => 'Имя',
+            'patronymic' => 'Отчество',
             'login' => 'Логин',
-            'email' => 'Email',
+            'email' => 'E-mail',
             'password' => 'Пароль',
             'adminRights' => 'Права администратора',
         ];
@@ -60,9 +64,9 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getApplications()
+    public function getOrders()
     {
-        return $this->hasMany(Application::className(), ['userId' => 'id']);
+        return $this->hasMany(Order::className(), ['userId' => 'id']);
     }
 
     // Изначальные методы до переопределения файла
@@ -84,7 +88,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      * Finds user by username
      *
      * @param string $username
-     * @return static|null
+     * @return User|array|\yii\db\ActiveRecord|null
      */
     public static function findByUsername($username)
     {
