@@ -2,11 +2,14 @@
 
 namespace app\controllers;
 
+use app\models\Category;
 use app\models\Product;
 use app\models\ProductSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ProductController implements the CRUD actions for Product model.
@@ -70,15 +73,24 @@ class ProductController extends Controller
         $model = new Product();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load($this->request->post())) {
+                $model->picture = UploadedFile::getInstance($model, 'picture');
+                $newFileName = md5($model->picture->baseName . '.' . $model->picture->extension.time()) . '.' . $model->picture->extension;
+                $model->picture->saveAs('@app/web/uploads/' . $newFileName);
+                $model->picture = $newFileName;
+                $model->save();
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
             $model->loadDefaultValues();
         }
 
+//        $categories = Category::find()->all();
+//        $categories = ArrayHelper::map($categories, 'id', 'title');
+
         return $this->render('create', [
             'model' => $model,
+//            'categories' => $categories,
         ]);
     }
 
