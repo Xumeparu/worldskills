@@ -76,7 +76,7 @@ class ProductController extends Controller
             if ($model->load($this->request->post())) {
                 $model->picture = UploadedFile::getInstance($model, 'picture');
                 $newFileName = md5($model->picture->baseName . '.' . $model->picture->extension.time()) . '.' . $model->picture->extension;
-                $model->picture->saveAs('@app/web/uploads/' . $newFileName);
+                $model->picture->saveAs('@webroot/uploads/' . $newFileName);
                 $model->picture = $newFileName;
                 $model->save();
                 return $this->redirect(['view', 'id' => $model->id]);

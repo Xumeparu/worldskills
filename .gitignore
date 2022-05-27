@@ -2,7 +2,7 @@
 .idea
 
 # netbeans project files
-nbproject
+basic/nbproject
 
 # zend studio for eclipse project files
 .buildpath
@@ -13,10 +13,10 @@ nbproject
 Thumbs.db
 
 # composer vendor dir
-/vendor
+basic/vendor
 
 # composer itself is not needed
-composer.phar
+basic/composer.phar
 
 # Mac DS_Store Files
 .DS_Store
@@ -30,4 +30,4 @@ tests/_output/*
 tests/_support/_generated
 
 #vagrant folder
-/.vagrant
+basic/.vagrant
