@@ -56,7 +56,7 @@ class Product extends \yii\db\ActiveRecord
             'year' => 'Год ',
             'publishingHouse' => 'Издательство',
             'antagonist' => 'Антагонист',
-            'categoryId' => 'ID категории',
+            'categoryId' => 'Категория',
             'price' => 'Цена',
             'timestamp' => 'Время создания',
             'picture' => 'Изображение',

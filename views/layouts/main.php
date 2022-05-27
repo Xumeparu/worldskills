@@ -37,7 +37,7 @@ AppAsset::register($this);
 
     $items = [];
     $items[] = ['label' => 'О нас', 'url' => ['/site/about']];
-    $items[] = ['label' => 'Каталог', 'url' => ['/site/catalog']];
+    $items[] = ['label' => 'Каталог', 'url' => ['site/catalog']];
     $items[] = ['label' => 'Где нас найти?', 'url' => ['/site/info']];
 
     if (Yii::$app->user->isGuest) {
@@ -47,7 +47,7 @@ AppAsset::register($this);
         if (Yii::$app->user->identity->adminRights === 1) {
             $items[] = ['label' => 'Панель администратора', 'url' => ['/admin']];
         } else {
-            $items[] = ['label' => 'Личный кабинет', 'url' => ['/user']];
+            $items[] = ['label' => 'Личный кабинет', 'url' => ['/profile']];
         }
 
         $items[] = '<li>'
